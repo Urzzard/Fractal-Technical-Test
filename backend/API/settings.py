@@ -30,8 +30,17 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 
-CORS_ALLOWED_ORIGINS_STRING = os.environ.get('DJANGO_CORS_ALLOWED_ORIGINS', '')
-CORS_ALLOWED_ORIGINS = [origin.strip() for origin in CORS_ALLOWED_ORIGINS_STRING.split(',') if origin.strip()]
+ALLOWED_HOSTS_STRING = os.environ.get('DJANGO_ALLOWED_HOSTS')
+if ALLOWED_HOSTS_STRING:
+    ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS_STRING.split(',')]
+else:
+    ALLOWED_HOSTS = []
+
+CORS_ALLOWED_ORIGINS_STRING = os.environ.get('DJANGO_CORS_ALLOWED_ORIGINS')
+if CORS_ALLOWED_ORIGINS_STRING:
+    CORS_ALLOWED_ORIGINS = [origin.strip() for origin in CORS_ALLOWED_ORIGINS_STRING.split(',') if origin.strip()]
+else:
+    CORS_ALLOWED_ORIGINS = []
 
 
 # Application definition
@@ -151,8 +160,6 @@ STORAGES = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#PUERTOS FRONTEND
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
 
 #PARA IMAGENES
 MEDIA_URL = '/media/'
