@@ -30,8 +30,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 
-ALLOWED_HOSTS_STRING = os.environ.get('DJANGO_ALLOWED_HOSTS', '')
-ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS_STRING.split(',') if host.strip()]
+CORS_ALLOWED_ORIGINS_STRING = os.environ.get('DJANGO_CORS_ALLOWED_ORIGINS', '')
+CORS_ALLOWED_ORIGINS = [origin.strip() for origin in CORS_ALLOWED_ORIGINS_STRING.split(',') if origin.strip()]
 
 
 # Application definition
